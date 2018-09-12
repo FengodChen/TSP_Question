@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.8)
+project(TSP)
+aux_source_directory(. DIR_MAIN)
+add_subdirectory(include)
+add_executable(TSP ${DIR_MAIN})
+target_link_libraries(TSP Include)

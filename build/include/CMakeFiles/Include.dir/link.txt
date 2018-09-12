@@ -1,0 +1,2 @@
+/usr/bin/ar qc libInclude.a  CMakeFiles/Include.dir/pathGC.cc.o CMakeFiles/Include.dir/pointGC.cc.o
+/usr/bin/ranlib libInclude.a
