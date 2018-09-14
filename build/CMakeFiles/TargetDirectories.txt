@@ -1,6 +1,0 @@
-/home/fengodchen/WorkSpace/C/TSP/build/CMakeFiles/rebuild_cache.dir
-/home/fengodchen/WorkSpace/C/TSP/build/CMakeFiles/TSP.dir
-/home/fengodchen/WorkSpace/C/TSP/build/CMakeFiles/edit_cache.dir
-/home/fengodchen/WorkSpace/C/TSP/build/include/CMakeFiles/rebuild_cache.dir
-/home/fengodchen/WorkSpace/C/TSP/build/include/CMakeFiles/Include.dir
-/home/fengodchen/WorkSpace/C/TSP/build/include/CMakeFiles/edit_cache.dir
