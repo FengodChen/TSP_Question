@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if test ! -d build
+then
+	mkdir build
+fi
+
+cd ./build
+cmake ../
+make clean
+make
+./TSP
+
+
+cd ../
