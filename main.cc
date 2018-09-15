@@ -1,6 +1,7 @@
 #include <iostream>
 #include "include/pointGC.hpp"
 #include "include/pathGC.hpp"
+
 using namespace std;
 
 extern int *pointList;
