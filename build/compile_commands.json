@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/fengodchen/WorkSpace/C/TSP_Question/build",
+  "command": "/usr/bin/g++-7    -g   -o CMakeFiles/TSP.dir/main.cc.o -c /home/fengodchen/WorkSpace/C/TSP_Question/main.cc",
+  "file": "/home/fengodchen/WorkSpace/C/TSP_Question/main.cc"
+},
+{
+  "directory": "/home/fengodchen/WorkSpace/C/TSP_Question/build/include",
+  "command": "/usr/bin/g++-7    -g   -o CMakeFiles/Include.dir/pathGC.cc.o -c /home/fengodchen/WorkSpace/C/TSP_Question/include/pathGC.cc",
+  "file": "/home/fengodchen/WorkSpace/C/TSP_Question/include/pathGC.cc"
+},
+{
+  "directory": "/home/fengodchen/WorkSpace/C/TSP_Question/build/include",
+  "command": "/usr/bin/g++-7    -g   -o CMakeFiles/Include.dir/pointGC.cc.o -c /home/fengodchen/WorkSpace/C/TSP_Question/include/pointGC.cc",
+  "file": "/home/fengodchen/WorkSpace/C/TSP_Question/include/pointGC.cc"
+}
+]
