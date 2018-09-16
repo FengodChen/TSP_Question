@@ -50,13 +50,14 @@ double** getDistanceMat(LinkList_P2d* head){
 
 int *getPointList(LinkList_P2d *head){
     int num = head->data;
-    int* list = new int[num];
+    int* list = new int[num*2];
     LinkList_P2d* tmp = head;
-    for(int i = 0; i < num; i++){
+    for(int i = 0; i < num*2;){
         tmp = tmp->next;
         list[i] = tmp->point.x;
         i++;
         list[i] = tmp->point.y;
+        i++;
     }
     return list;
 }
