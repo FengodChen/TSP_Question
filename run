@@ -18,3 +18,4 @@ make
 
 
 cd ../
+python draw.py&

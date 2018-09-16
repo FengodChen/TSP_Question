@@ -1,12 +1,12 @@
 #include "pointGC.hpp"
 #include <iostream>
 #include <math.h>
-#include <alloca.h>
+#include <cstdlib>
 
 LinkList_P2d* getnPoint(int num){
     using namespace std;
     if(num <= 0){
-        return nullptr;
+        return NULL;
     }else{
         int LLsize = sizeof(LinkList_P2d);  //Get the size of LinkList_P2d
         LinkList_P2d* LLhead = (LinkList_P2d*)malloc(LLsize);
