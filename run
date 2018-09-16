@@ -5,6 +5,11 @@ then
 	mkdir build
 fi
 
+if test ! -d data
+then
+	mkdir data
+fi
+
 cd ./build
 cmake ../
 make clean

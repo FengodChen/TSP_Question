@@ -26,4 +26,7 @@ double getDistance(Point_2D a, Point_2D b);
 //Get Distance Matrix
 double** getDistanceMat(LinkList_P2d* head);
 
+//Return all points x and y
+int *getPointList(LinkList_P2d *head);
+
 #endif
