@@ -27,7 +27,7 @@ double getDistance(Point_2D a, Point_2D b){
 double** getDistanceMat(Point_2D* LLhead, int num){
     double** list = new double*[num];
     for(int i = 0; i < num; i++){
-        list[i] = new double[10];
+        list[i] = new double[num];
         for(int j = i+1; j < num; j++){
             list[i][j] = getDistance(LLhead[i], LLhead[j]);
         }
