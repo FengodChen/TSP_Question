@@ -37,10 +37,10 @@ int main(int argc, char const *argv[])
     outputFile(pointNum_);
 
     // Handle the data
-    LinkList_P2d* pointLinkList = getnPoint(pointNum_);
-    double** distanceMat = getDistanceMat(pointLinkList);
+    Point_2D* pointLinkList = getnPoint(pointNum_);
+    double** distanceMat = getDistanceMat(pointLinkList, pointNum_);
     // Output point.x and point.y to file
-    int *filePointList = getPointList(pointLinkList);
+    int *filePointList = getPointList(pointLinkList, pointNum_);
     for(int i = 0; i < pointNum_*2; i++)
         outputFile(filePointList[i]);
 

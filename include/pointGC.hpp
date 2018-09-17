@@ -10,23 +10,16 @@ typedef struct Point_2D{
     pointValue y;
 }Point_2D;
 
-//Linked List of 2D Point
-typedef struct LinkList_P2d{
-    Point_2D point;
-    struct LinkList_P2d* next;
-    int data;
-}LinkList_P2d;
-
 //Create the Linked List which include [num] 2D Points
-LinkList_P2d* getnPoint(int num);
+Point_2D* getnPoint(int num);
 
 //Get the distance between two points
 double getDistance(Point_2D a, Point_2D b);
 
 //Get Distance Matrix
-double** getDistanceMat(LinkList_P2d* head);
+double** getDistanceMat(Point_2D* LLhead, int num);
 
 //Return all points x and y
-int *getPointList(LinkList_P2d *head);
+int *getPointList(Point_2D *LLhead, int num);
 
 #endif
