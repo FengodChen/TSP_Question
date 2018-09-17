@@ -8,9 +8,8 @@ using namespace std;
 
 extern int *pointList;
 extern int pointNum;
-extern PathList pathA;
-extern PathList pathB;
 extern double distanceSum;
+extern Path* pathList;
 
 bool isFull(int num){
     for(int i = 0; i < num; i++)
@@ -51,35 +50,32 @@ int main(int argc, char const *argv[])
     int pointA = 0;
     int pointB = 0;
     pointList[0] = 0;
+    pathList[0] = 0;
+    pathList[pointNum_] = 0;
     
     while(!isFull(pointNum_)){
-        pointA = pathFind(pointA, &pathA, distanceMat);
+        pointA = pathFind(pointA, distanceMat);
         pointList[pointA] = 0;
-        pathAdd(&pathA, pointA);
+        pathAdd(pointA, 1);
 
         if(isFull(pointNum_))
             break;
 
-        pointB = pathFind(pointB, &pathB, distanceMat);
+        pointB = pathFind(pointB, distanceMat);
         pointList[pointB] = 0;
-        pathAdd(&pathB, pointB);
+        pathAdd(pointB, -1);
     }
-    distanceSum += distanceMat[pathA.num-1][pathB.num-1];
+    distanceSum += distanceMat[pointA][pointB];
 
     // Output path
     cout << "Path:" << endl << "\t";
-    cout << "0 -> ";
-    outputFile(0);
-    for(int i = 0; i < pathA.num; i++){
-        cout << pathA.list[i] << " -> ";
-        outputFile(pathA.list[i]);
+    for(int i = 0; i <= pointNum_; i++){
+        if(i == pointNum_)
+            cout << pathList[i] << endl;
+        else
+            cout << pathList[i] << " -> ";
+        outputFile(pathList[i]);
     }
-    for(int i = pathB.num-1; i >= 0; i--){
-        cout << pathB.list[i] << " -> ";
-        outputFile(pathB.list[i]);
-    }
-    cout << "0" << endl;
-    outputFile(0);
 
     cout << "Total Distance: " << endl << "\t" << distanceSum << endl;
 

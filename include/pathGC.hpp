@@ -3,27 +3,25 @@
 
 #include "pointGC.hpp"
 
-typedef struct PathList{
-    int num;
-    int *list;
-} PathList;
+typedef int Path;
 
 extern int *pointList;
 extern int pointNum;
-extern PathList pathA;
-extern PathList pathB;
 
 //Create list with num
 void pathInit(int num);
 
 //Exchange path by position, position start on 0
-void pathExchange(PathList* path, int positionOne, int positionTwo);
+void pathExchange(int positionOne, int positionTwo);
 
-//Add point to path
-void pathAdd(PathList* path, int num);
+//Add point to path, when direction<0 from end, else from start
+void pathAdd(int num, int direction);
 
 //Find the shorted path and return the other pointID
-int pathFind(int pointID, PathList* path, double** DistanceMat);
+int pathFind(int pointID, double** DistanceMat);
+
+//Make path not cross each other
+void pathDeCross(Point_2D* point, int num);
 
 //Judge if the two lines which links two points is cross.
 bool isLineCross(

@@ -4,32 +4,39 @@
 int *pointList;
 int pointNum;
 double distanceSum = 0;
-PathList pathA, pathB;
+Path* pathList;
 
 void pathInit(int num){
     pointList = new int[num];
     for(int i = 0; i < num; i++)
         pointList[i] = 1;
     
-    pathA.list = new int[num];
-    pathB.list = new int[num];
+    pathList = new Path[num+1];
+    for(int i = 0; i <= num; i++)
+        pathList[i] = -1;
 
     pointNum = num;
     return ;
 }
 
-void pathAdd(PathList* path, int num){
-    path->list[path->num] = num;
-    path->num += 1;
+void pathAdd(int num, int direction){
+    int position;
+    if(direction >= 0){
+        for(position = 0; pathList[position] != -1; position++);
+        pathList[position] = num;
+    }else{
+        for(position = pointNum; pathList[position] != -1; position--);
+        pathList[position] = num;
+    }
     return ;
 }
 
-void pathExchange(PathList* path, int positionOne, int positionTwo){
+void pathExchange(int positionOne, int positionTwo){
     //TODO
     return;
 }
 
-int pathFind(int pointID, PathList* path, double** distanceMat){
+int pathFind(int pointID, double** distanceMat){
     int shortPoint = -1;
     for(int i = 0; i < pointNum; i++){
         if(i == pointID || pointList[i] == 0)
@@ -45,6 +52,14 @@ int pathFind(int pointID, PathList* path, double** distanceMat){
     return shortPoint;
 }
 
+void pathDeCross(Point_2D* point, int num){
+    bool allDeCross = true;
+    for(int i = 0; i < num-1; i++){
+        for(int j = i+1; j < num; j++){
+            if(isLineCross);//TODO
+        }
+    }
+}
 
 bool isLineCross(
             Point_2D lineOne_pointStart, 
