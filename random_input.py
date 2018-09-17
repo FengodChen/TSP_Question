@@ -1,3 +1,5 @@
+#! /usr/bin/python
+
 from random import randint
 num = int(input("Input point(s) number: "))
 print("Input area: [x, y]")
