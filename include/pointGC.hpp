@@ -22,4 +22,8 @@ double** getDistanceMat(Point_2D* LLhead, int num);
 //Return all points x and y
 int *getPointList(Point_2D *LLhead, int num);
 
+//Point Calculate
+double pointMuti(Point_2D a, Point_2D b);
+Point_2D pointSub(Point_2D a,Point_2D b);
+
 #endif

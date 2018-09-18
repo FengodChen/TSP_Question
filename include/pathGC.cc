@@ -1,9 +1,9 @@
 #include "pathGC.hpp"
 #include "pointGC.hpp"
+#include <iostream>
 
 int *pointList;
 int pointNum;
-double distanceSum = 0;
 Path* pathList;
 
 void pathInit(int num){
@@ -31,8 +31,10 @@ void pathAdd(int num, int direction){
     return ;
 }
 
-void pathExchange(int positionOne, int positionTwo){
-    //TODO
+void pointExchange(Point_2D* list, int positionOne, int positionTwo){
+    Point_2D tmp = list[positionOne];
+    list[positionOne] = list[positionTwo];
+    list[positionTwo] = tmp;
     return;
 }
 
@@ -48,18 +50,54 @@ int pathFind(int pointID, double** distanceMat){
             if(distanceMat[pointID][i] < distanceMat[pointID][shortPoint])
                 shortPoint = i;
     }
-    distanceSum += distanceMat[pointID][shortPoint];
     return shortPoint;
 }
 
-void pathDeCross(Point_2D* point, int num){
-    bool allDeCross = true;
-    for(int i = 0; i < num-1; i++){
-        for(int j = i+1; j < num; j++){
-            if(isLineCross);//TODO
+void pathDeCross(Point_2D* point, int usedNum){
+    bool isDeCross = true;
+    int num = 0;
+    if(usedNum > 10000){
+        std::cout << "WARNING(on pathDeCross): Runtime is over!" << std::endl;
+        return;
+    }
+    for(int i = 0; i < pointNum-2; i++){
+        if(i == 0){
+            for(int j = i+2; j < pointNum-1; j++)
+                if(isLineCross(
+                    point[pathList[i]],
+                    point[pathList[i+1]],
+                    point[pathList[j]],
+                    point[pathList[j+1]]
+                )){
+                    pointExchange(point, pathList[i+1], pathList[j]);
+                    isDeCross = false;
+                }
+        }else{
+            for(int j = i+2; j < pointNum; j++)
+                if(isLineCross(
+                    point[pathList[i]],
+                    point[pathList[i+1]],
+                    point[pathList[j]],
+                    point[pathList[j+1]]
+                )){
+                    pointExchange(point, pathList[i+1], pathList[j]);
+                    isDeCross = false;
+                    num++;
+                }
         }
     }
+    if(!isDeCross)
+        pathDeCross(point, usedNum+1);
+    
+    return;
 }
+
+/*
+std::ostream & operator<<(std::ostream &__out, Point_2D point){
+    std::cout << "(" << point.x << ", " << point.y << ")";
+    return __out;
+}
+*/
 
 bool isLineCross(
             Point_2D lineOne_pointStart, 
@@ -67,11 +105,15 @@ bool isLineCross(
             Point_2D lineTwo_pointStart,
             Point_2D lineTwo_pointEnd 
             ){
-    double lineOne_middle_x = (lineOne_pointStart.x + lineOne_pointEnd.x)/2.0;
-    double lineOne_middle_y = (lineOne_pointStart.y + lineOne_pointEnd.y)/2.0;
-    if((lineTwo_pointStart.x - lineOne_middle_x)*(lineTwo_pointEnd.x - lineOne_middle_x) < 0)
-        return true;
-    if((lineTwo_pointStart.y - lineOne_middle_y)*(lineTwo_pointEnd.y - lineOne_middle_y) < 0)
-        return true;
+    Point_2D lineOne, lineTwo;
+    lineOne = pointSub(lineOne_pointEnd, lineOne_pointStart);
+    lineTwo = pointSub(lineTwo_pointEnd, lineTwo_pointStart);
+    double t = pointMuti(pointSub(lineTwo_pointStart, lineOne_pointStart), lineTwo)/pointMuti(lineOne, lineTwo);
+    double u = pointMuti(lineOne, pointSub(lineOne_pointStart, lineTwo_pointStart))/pointMuti(lineOne, lineTwo);
+    //std::cout << lineOne_pointStart << "->" << lineOne_pointEnd << " || " << lineTwo_pointStart << "->" << lineTwo_pointEnd << std::endl;
+    //std::cout << "t = " << t << ", u = " << u << std::endl;
+    if(t >= 0 && t <= 1)
+        if(u >= 0 && u <= 1)
+            return true;
     return false;
 }

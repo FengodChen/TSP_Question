@@ -16,6 +16,7 @@ Point_2D* getnPoint(int num){
             cout << "Point" << i << "\t\t";
             cin >> LLhead[i].x >> LLhead[i].y;
         }
+        cout << endl << "==========ENDINPUT==========" << endl << endl;
         return LLhead;
     }
 }
@@ -47,4 +48,15 @@ int *getPointList(Point_2D *LLhead, int num){
         j++;
     }
     return list;
+}
+
+double pointMuti(Point_2D a, Point_2D b){
+    return (a.x*b.y - a.y*b.x);
+}
+
+Point_2D pointSub(Point_2D a,Point_2D b){
+    Point_2D ans;
+    ans.x = a.x - b.x;
+    ans.y = a.y - b.y;
+    return ans;
 }

@@ -12,7 +12,7 @@ extern int pointNum;
 void pathInit(int num);
 
 //Exchange path by position, position start on 0
-void pathExchange(int positionOne, int positionTwo);
+void pointExchange(Point_2D* list, int positionOne, int positionTwo);
 
 //Add point to path, when direction<0 from end, else from start
 void pathAdd(int num, int direction);
@@ -21,7 +21,7 @@ void pathAdd(int num, int direction);
 int pathFind(int pointID, double** DistanceMat);
 
 //Make path not cross each other
-void pathDeCross(Point_2D* point, int num);
+void pathDeCross(Point_2D* point, int usedNum);
 
 //Judge if the two lines which links two points is cross.
 bool isLineCross(

@@ -8,7 +8,6 @@ using namespace std;
 
 extern int *pointList;
 extern int pointNum;
-extern double distanceSum;
 extern Path* pathList;
 
 bool isFull(int num){
@@ -38,10 +37,6 @@ int main(int argc, char const *argv[])
     // Handle the data
     Point_2D* pointLinkList = getnPoint(pointNum_);
     double** distanceMat = getDistanceMat(pointLinkList, pointNum_);
-    // Output point.x and point.y to file
-    int *filePointList = getPointList(pointLinkList, pointNum_);
-    for(int i = 0; i < pointNum_*2; i++)
-        outputFile(filePointList[i]);
 
     // Initialize path list
     pathInit(pointNum_);
@@ -53,6 +48,7 @@ int main(int argc, char const *argv[])
     pathList[0] = 0;
     pathList[pointNum_] = 0;
     
+    // Get the path
     while(!isFull(pointNum_)){
         pointA = pathFind(pointA, distanceMat);
         pointList[pointA] = 0;
@@ -65,18 +61,30 @@ int main(int argc, char const *argv[])
         pointList[pointB] = 0;
         pathAdd(pointB, -1);
     }
-    distanceSum += distanceMat[pointA][pointB];
 
-    // Output path
+    // Optimize the path when two lines are cross
+    pathDeCross(pointLinkList, 0);
+
+    // Output point.x and point.y to file
+    int *filePointList = getPointList(pointLinkList, pointNum_);
+    for(int i = 0; i < pointNum_*2; i++)
+        outputFile(filePointList[i]);
+
+    // Output path to screen and file
     cout << "Path:" << endl << "\t";
     for(int i = 0; i <= pointNum_; i++){
         if(i == pointNum_)
-            cout << pathList[i] << endl;
+            cout << "(" << pointLinkList[pathList[i]].x << ", " << pointLinkList[pathList[i]].y << ")" << endl;
         else
-            cout << pathList[i] << " -> ";
+            cout << "(" << pointLinkList[pathList[i]].x << ", " << pointLinkList[pathList[i]].y << ")" << " -> ";
         outputFile(pathList[i]);
     }
 
+    //Calculate distance and output it to screen
+    double distanceSum = 0;
+    for(int i = 0; i <= pointNum_; i++){
+        distanceSum += distanceMat[pathList[i]][pathList[i+1]];
+    }
     cout << "Total Distance: " << endl << "\t" << distanceSum << endl;
 
     closeOutFile();
