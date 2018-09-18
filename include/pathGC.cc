@@ -2,14 +2,14 @@
 #include "pointGC.hpp"
 #include <iostream>
 
-int *pointList;
+int *pointAvailableList;
 int pointNum;
 Path* pathList;
 
 void pathInit(int num){
-    pointList = new int[num];
+    pointAvailableList = new int[num];
     for(int i = 0; i < num; i++)
-        pointList[i] = 1;
+        pointAvailableList[i] = 1;
     
     pathList = new Path[num+1];
     for(int i = 0; i <= num; i++)
@@ -41,12 +41,12 @@ void pointExchange(Point_2D* list, int positionOne, int positionTwo){
 int pathFind(int pointID, double** distanceMat){
     int shortPoint = -1;
     for(int i = 0; i < pointNum; i++){
-        if(i == pointID || pointList[i] == 0)
+        if(i == pointID || pointAvailableList[i] == 0)
             continue;
         if(shortPoint == -1)
             shortPoint = i;
 
-        if(pointList[i] == 1)
+        if(pointAvailableList[i] == 1)
             if(distanceMat[pointID][i] < distanceMat[pointID][shortPoint])
                 shortPoint = i;
     }

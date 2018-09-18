@@ -5,7 +5,7 @@
 
 typedef int Path;
 
-extern int *pointList;
+extern int *pointAvailableList;
 extern int pointNum;
 
 //Create list with num
