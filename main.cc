@@ -31,17 +31,21 @@ int main(int argc, char const *argv[])
     int pointNum_;
     cout << "Please input the number of points: ";
     cin >> pointNum_;
-    // Output the number of the points to file
-    outputFile(pointNum_);
+
+    Point_2D* pointList = getnPoint(pointNum_);
 
     // Handle the data
-    Point_2D* pointList = getnPoint(pointNum_);
+    cout << "-- Getting distance Matrix... ";
     double** distanceMat = getDistanceMat(pointList, pointNum_);
+    cout << "[Finished]" << endl;
 
     // Initialize path list
+    cout << "-- Initializing path... ";
     pathInit(pointNum_);
+    cout << "[Finished]" << endl;
 
     // Set start path point0
+    cout << "-- Getting simple path... ";
     int pointA = 0;
     int pointB = 0;
     pointAvailableList[0] = 0;
@@ -61,9 +65,16 @@ int main(int argc, char const *argv[])
         pointAvailableList[pointB] = 0;
         pathAdd(pointB, -1);
     }
+    cout << "[Finished]" << endl;
 
     // Optimize the path when two lines are cross
+    cout << "-- DeCrossing path... ";
     pathDeCross(pointList, 0);
+    cout << "[Finished]" << endl;
+
+    cout << "-- All Finished" << endl << endl << endl;
+    // Output the number of the points to file
+    outputFile(pointNum_);
 
     // Output point.x and point.y to file
     int *filePointList = getPointList(pointList, pointNum_);
@@ -71,7 +82,7 @@ int main(int argc, char const *argv[])
         outputFile(filePointList[i]);
 
     // Output path to screen and file
-    cout << "Path:" << endl << "\t";
+    cout << "-- Path:" << endl << "\t";
     for(int i = 0; i <= pointNum_; i++){
         if(i == pointNum_)
             cout << "(" << pointList[pathList[i]].x << ", " << pointList[pathList[i]].y << ")" << endl;
@@ -85,7 +96,7 @@ int main(int argc, char const *argv[])
     for(int i = 0; i <= pointNum_; i++){
         distanceSum += getDistance(pointList[pathList[i]], pointList[pathList[i+1]]);
     }
-    cout << "Total Distance: " << endl << "\t" << distanceSum << endl;
+    cout << "-- Total Distance: " << endl << "\t" << distanceSum << endl;
 
     closeOutFile();
 
