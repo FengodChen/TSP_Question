@@ -6,6 +6,6 @@
 ## Addition
 * Now you can see the answer with GUI. This is powered by python(>=2.7) with matplotlib.
 
-* If you don't install matplotlib, just come here: [GitHub: matplotlib](https://github.com/matplotlib/matplotlib).
+* If you hadn't install matplotlib, just come here: [GitHub: matplotlib](https://github.com/matplotlib/matplotlib).
 
 * If you don't want to install it or show the graph, just open the file ''run'' and disable running ''draw''.
